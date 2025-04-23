@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Apple from "./components/imgs/apple.png"
+// import Google from "./components/imgs/google.png"
 
-function App() {
+export default function App() {
+  const canal = 'CFB Cursos'
+
+  const curso =()=> {
+    return 'Curso de React'
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <section>
+      <header>
+        <p>{'Curso:' + curso}</p>
+        <p>Canal:{canal}</p>
       </header>
-    </div>
+      <section>
+        <img src="/img/google.png" alt="Baixar na Google Store"/>
+        <img src={Apple} alt="Baixar na Apple Store"/> 
+      </section>
+    </section>
   );
 }
 
-export default App;
+//função precisa ter o mesmo nome do arquivo.
