@@ -1,25 +1,15 @@
-import React from "react";
-import Apple from "./components/imgs/apple.png"
-// import Google from "./components/imgs/google.png"
+import React, { useState } from "react";
+import Numero from "./components/Numero";
+import "./App.css";
 
 export default function App() {
-  const canal = 'CFB Cursos'
-
-  const curso =()=> {
-    return 'Curso de React'
-  }
+  const [num, setNum] = useState(10);
 
   return (
-    <section>
-      <header>
-        <p>{'Curso:' + curso}</p>
-        <p>Canal:{canal}</p>
-      </header>
-      <section>
-        <img src="/img/google.png" alt="Baixar na Google Store"/>
-        <img src={Apple} alt="Baixar na Apple Store"/> 
-      </section>
-    </section>
+    <>
+      <p>Valor do state num em App: {num}</p>
+      <Numero num={num} setNum={setNum} />
+    </>
   );
 }
 
