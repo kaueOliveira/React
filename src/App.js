@@ -3,34 +3,31 @@ import React, {useState} from "react";
 
 export default function App() {
 
-  const [cor, setCor] = useState(1)
+  const [form, setForm] = useState({"nome":"", "curso":"", "ano":""})
 
-  const vermelho = {color: '#f00'}
-  const verde = {color: '#0f0'}
-  const azul = {color: '#00f'}
-
-  const retCor =(c)=> {
-    if (c === 1) {
-      return vermelho
-    } else if (c === 2) {
-      return verde
+  const handleFormChange = (e) => {
+    if(e.target.getAttribute('name') === 'fnome') {
+      setForm({"nome": e.target.value, "curso": form.curso, "ano": form.ano})
+    } else if(e.target.getAttribute('name') === 'fcurso') {
+      setForm({"nome": form.nome, "curso": e.target.value, "ano": form.ano})
     } else {
-      return azul
+      setForm({"nome": form.nome, "curso": form.curso, "ano": e.target.value})
     }
-  }
 
-  const mudaCor =()=> {
-    console.log(cor)
-    setCor(cor+1)
-    if (cor > 2) {
-      setCor(1)
-    }
   }
   
   return (
     <>
-      <h1 style={retCor(cor)}>CFB Cursos</h1>
-      <button onClick={()=>mudaCor()}>Mudar Cor</button>  
+      <label>Nome</label>
+      <input type="text" name="fnome" value={form.nome} onChange={(e)=>handleFormChange(e)}/><br/>
+      <label>Curso</label>
+      <input type="text" name="fcurso" value={form.curso} onChange={(e)=>handleFormChange(e)}/><br/>
+      <label>Ano</label>
+      <input type="text" name="fano" value={form.ano} onChange={(e)=>handleFormChange(e)}/><br/>
+
+      <p>Nome digitado: {form.nome}</p>
+      <p>Curso digitado: {form.curso}</p>
+      <p>Ano digitado: {form.ano}</p>
     </>
   );
 }
