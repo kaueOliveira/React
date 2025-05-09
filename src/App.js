@@ -6,7 +6,7 @@ export default function App() {
   return (
     <>
      <h1>Componente de Classe</h1>
-     <Carro canal="CFB Cursos"/>
+     <Carro fator={1}/>
     </> 
   );
 }
