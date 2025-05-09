@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Classe from "./components/Classe"
+import React from "react";
+import Carro from "./components/Carro"
 
 export default function App() {
 
   return (
     <>
-     <h1>Digite um nome</h1>
-     <Classe canal="CFB Cursos"/>
+     <h1>Componente de Classe</h1>
+     <Carro canal="CFB Cursos"/>
     </> 
   );
 }
