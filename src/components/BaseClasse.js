@@ -10,7 +10,7 @@ export default class BaseClasse extends React.Component {
       nome: this.props.nomeAluno,
     };
     this.status = this.props.status;
-    let ad = this.ativarDesativar.bind(this)
+    //let ad = this.ativarDesativar.bind(this)
     //Instruçoes do Construtor
   }
 
