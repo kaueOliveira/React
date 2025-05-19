@@ -1,66 +1,69 @@
 import React, { useState } from "react";
 
-const carros = [
-  {categoria:"Esporte", preco:"110000", modelo:"Golf GTI"},
-  {categoria:"Esporte", preco:"120000", modelo:"Camaro"},
-  {categoria:"SUV", preco:"85000", modelo:"HRV"},
-  {categoria:"SUV", preco:"83000", modelo:"T-Cross"},
-  {categoria:"Utilitario", preco:"125000", modelo:"Hillux"},
-  {categoria:"Utilitario", preco:"90000", modelo:"Ranger"},
-]
+const medidas = [
+  { classificacao: "Abaixo do Peso", imc: "Abaixo de 18,5" },
+  { classificacao: "Peso Normal", imc: "Entre 18,5 e 24,9" },
+  { classificacao: "Sobrepeso", imc: "Entre 25 e 29,9" },
+  { classificacao: "Obesidade Grau I", imc: "Entre 30 e 34,9" },
+  { classificacao: "Obesidade Grau II", imc: "Entre 35 e 39,9" },
+  { classificacao: "Obesidade Grau III ou Mórbida", imc: "Acima de 40" },
+];
 
-const linhas=(cat)=>{
-  const li =[]
+const linhas = () => {
+  const li = [];
 
-  carros.forEach((carro)=>{
-    if(carro.categoria.toLocaleUpperCase() === cat.toLocaleUpperCase() || cat === "") {
-      li.push(
-        <tr>
-          <td>{carro.categoria}</td>
-          <td>{carro.preco}</td>
-          <td>{carro.modelo}</td>
-        </tr>
-      )
-    }
-  })
+  medidas.forEach((medida) => {
+    li.push(
+      <tr>
+        <td>{medida.classificacao}</td>
+        <td>{medida.imc}</td>
+      </tr>
+    );
+  });
 
-  return li
-}
+  return li;
+};
 
-
-
-const TabelaCarros=(cat)=>{
-  return(
-    <table border='1' style={{borderCollapse:'collapse'}}>
+const tabelaImc = () => {
+  return (
+    <table border="1" style={{ borderCollapse: "collapse" }}>
       <thead>
-          <tr>
-            <th>Categoria</th>
-            <th>Preço</th>
-            <th>Modeloo</th>
-          </tr>
+        <tr>
+          <th>Classificação</th>
+          <th>IMC</th>
+        </tr>
       </thead>
-      <tbody>
-        {linhas(cat)}
-      </tbody>
+      <tbody>{linhas()}</tbody>
     </table>
-  )
-}
+  );
+};
 
-const pesquisarCategoria=(cat, scat)=>{
-  return(
+const info = (p, setP, a, setA) => {
+  return (
     <div>
-      <label>Digite uma Categoria</label>
-      <input type="text" value={cat} onChange={(e)=>scat(e.target.value)}/>
+      <label>Informe seu Peso:</label>
+      <input type="text" value={p} onChange={(e) => setP(e.target.value)} />
+      <br />
+      <label>Informe sua Altura:</label>
+      <input type="text" value={a} onChange={(e) => setA(e.target.value)} />
     </div>
-  )
-}
+  );
+};
 
 export default function App() {
-  const [categoria, setCategoria]=useState('')
+  const [peso, setPeso] = useState(0);
+  const [altura, setAltura] = useState(0);
+  const [resultado, setResultado] = useState(0);
   return (
     <>
-      {pesquisarCategoria(categoria, setCategoria)}
-      {TabelaCarros(categoria)}
+      {info(peso, setPeso, altura, setAltura)}
+      <button
+        onClick={() => setResultado(parseFloat(peso / (altura * altura)).toFixed(2))}
+      >
+        Calcular
+      </button>
+      <p>Resultado: {resultado}</p>
+      {tabelaImc()}
     </>
   );
 }
