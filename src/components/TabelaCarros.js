@@ -64,5 +64,3 @@ export default function App() {
     </>
   );
 }
-
-//função precisa ter o mesmo nome do arquivo.
