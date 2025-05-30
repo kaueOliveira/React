@@ -1,17 +1,27 @@
-import React from "react";
+import { useReducer } from "react";
 
-function ListaNumeros(props) {
-  const num = props.numeros;
-  const lista_numeros = num.map((n) => <li key={n.toString()}>{n}</li>);
-  return(<ul>{lista_numeros}</ul>)
+function reducer(state, action) {
+  switch (action.type) {
+    case "increment":
+      return { count: state.count + 1 };
+    case "decrement":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
 }
 
-const array_numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 export default function App() {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
   return (
-    <>
-      <ListaNumeros numeros={array_numeros} />
-    </>
+    <div>
+      <h1>Contador</h1>
+
+      <div>
+        <button onClick={() => dispatch({ type: "decrement" })}>-</button>
+        <span>{state.count}</span>
+        <button onClick={() => dispatch({ type: "increment" })}>+</button>
+      </div>
+    </div>
   );
 }
