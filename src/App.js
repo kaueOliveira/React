@@ -1,22 +1,17 @@
-import React, {useState} from 'react'
-import Tabela from './imc_components/Tabela'
-import Peso from './imc_components/Peso'
-import Altura from './imc_components/Altura'
-import Calcular from './imc_components/Calcular'
-import Resultado from './imc_components/Resultado'
+import React from "react";
+
+function ListaNumeros(props) {
+  const num = props.numeros;
+  const lista_numeros = num.map((n) => <li key={n.toString()}>{n}</li>);
+  return(<ul>{lista_numeros}</ul>)
+}
+
+const array_numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export default function App() {
-  const [peso, setPeso]=useState(0)
-  const [altura, setAltura]=useState(0)
-  const [resultado, setResultado]=useState(0)
-
-  return(
+  return (
     <>
-      <Peso peso={peso} sp={setPeso}/>
-      <Altura altura={altura} sa={setAltura}/>
-      <Calcular peso={peso} altura={altura} sr={setResultado}/>  
-      <Resultado resultado={resultado}/>
-      <Tabela/>
+      <ListaNumeros numeros={array_numeros} />
     </>
-  )
+  );
 }
